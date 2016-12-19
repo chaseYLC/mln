@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="files">
+      <UniqueIdentifier>{c8afdb73-f850-4bb4-8735-0144a20c0be1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\component.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\connection.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\container.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stdafx.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\netService.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\connectionImpl.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eventReceiver.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\messageProcedure.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\netServiceAcceptor.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\netServiceImpl.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\netServiceConnector.h">
+      <Filter>files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\stdafx.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\connectionImpl.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\messageProcedure.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\netService.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\netServiceAcceptor.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\netServiceImpl.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\netServiceConnector.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
