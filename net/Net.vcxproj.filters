@@ -6,60 +6,123 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\component.h">
+    <ClInclude Include="connection.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="include\connection.h">
+    <ClInclude Include="stdafx.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="include\container.h">
+    <ClInclude Include="netService.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="include\stdafx.h">
+    <ClInclude Include="connectionImpl.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="include\netService.h">
+    <ClInclude Include="eventReceiver.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\connectionImpl.h">
+    <ClInclude Include="messageProcedure.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="include\eventReceiver.h">
+    <ClInclude Include="netServiceAcceptor.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="include\messageProcedure.h">
+    <ClInclude Include="netServiceImpl.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="include\netServiceAcceptor.h">
+    <ClInclude Include="netServiceConnector.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="include\netServiceImpl.h">
+    <ClInclude Include="messageBuffer.h">
       <Filter>files</Filter>
     </ClInclude>
-    <ClInclude Include="include\netServiceConnector.h">
+    <ClInclude Include="memoryPool.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="xmlParsingSupport.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="logger.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="macros.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="test_interface.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="packetEncType.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="packetParserSimple.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptionCrashDump.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="netUtil.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="threadStaticValue.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="timeUtil.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="flagChecker.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="mssqlConsumer.h">
       <Filter>files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sources\stdafx.cpp">
+    <ClCompile Include="stdafx.cpp">
       <Filter>files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\connectionImpl.cpp">
+    <ClCompile Include="connectionImpl.cpp">
       <Filter>files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\messageProcedure.cpp">
+    <ClCompile Include="messageProcedure.cpp">
       <Filter>files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\netService.cpp">
+    <ClCompile Include="netService.cpp">
       <Filter>files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\netServiceAcceptor.cpp">
+    <ClCompile Include="netServiceAcceptor.cpp">
       <Filter>files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\netServiceImpl.cpp">
+    <ClCompile Include="netServiceImpl.cpp">
       <Filter>files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\netServiceConnector.cpp">
+    <ClCompile Include="netServiceConnector.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="messageBuffer.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="logger.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_interface.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="packetParserSimple.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="exceptionCrashDump.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="netUtil.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="timeUtil.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="mssqlConsumer.cpp">
       <Filter>files</Filter>
     </ClCompile>
   </ItemGroup>
