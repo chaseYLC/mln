@@ -1,7 +1,36 @@
 #pragma once
 
-#include <Net/netService.h>
-#include <Net/connection.h>
+#include <boost/asio.hpp>
+#include <boost/atomic.hpp>
+#include <boost/bind.hpp>
+#include <boost/chrono.hpp>
+#include <boost/enable_shared_from_this.hpp>
+#include <boost/format.hpp>
+#include <boost/function.hpp>
+#include <boost/log/attributes.hpp>
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/pool/pool.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/thread.hpp>
+#include <boost/thread/shared_mutex.hpp>
+#include <boost/unordered_map.hpp>
+
+#include <array>
+#include <iostream>
+#include <memory>
+#include <mutex>
+#include <random>
+#include <stdint.h>
+#include <string>
+#include <tchar.h>
+#include <vector>
+
+#include <net/macros.h>
+#include <net/logger.h>
+#include <net/netService.h>
+#include <net/connection.h>
 
 
 #ifdef _WIN64
