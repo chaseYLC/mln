@@ -203,7 +203,7 @@ namespace MLN
 			}
 			else
 			{
-				if (10058 != ec.value()	// shutdown
+				if (status_codes::SHUTDOWN != ec.value()	// shutdown
 					&& boost::asio::error::eof != ec.value()	// close by client
 					&& 0 < _readHandlerPending)
 				{

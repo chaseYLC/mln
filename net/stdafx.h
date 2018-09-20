@@ -26,5 +26,8 @@
 #include <vector>
 
 
+#define _XMLNSTR(x) L ## x
+
+
 
 #endif

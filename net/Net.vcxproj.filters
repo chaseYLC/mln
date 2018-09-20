@@ -4,6 +4,9 @@
     <Filter Include="files">
       <UniqueIdentifier>{c8afdb73-f850-4bb4-8735-0144a20c0be1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dat">
+      <UniqueIdentifier>{ea7e2efd-e9c3-49f2-aa8b-275427e95d5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="connection.h">
@@ -125,5 +128,10 @@
     <ClCompile Include="mssqlConsumer.cpp">
       <Filter>files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\mln_net_constants.dat">
+      <Filter>dat</Filter>
+    </None>
   </ItemGroup>
 </Project>

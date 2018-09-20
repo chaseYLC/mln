@@ -9,6 +9,17 @@ namespace MLN
 {
 	namespace Net
 	{
+		typedef int status_code;
+		class status_codes
+		{
+		public:
+#define _MLN_NET_SOCKET
+#define DAT(a,b,c) const static status_code a=b;
+#include "../mln_net_constants.dat"
+#undef _MLN_NET_SOCKET
+#undef DAT
+		};
+
 		class NetService;
 		class EventReceiver;
 
@@ -53,6 +64,7 @@ namespace MLN
 			virtual EventReceiver * getReceiver() = 0;
 			virtual MsgUserManip * getMsgManip() = 0;
 		};
+
 	};//namespace Net
 };//namespace MLN
 

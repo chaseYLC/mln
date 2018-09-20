@@ -1,0 +1,7 @@
+#ifdef _MLN_NET_SOCKET
+DAT(SHUTDOWN,              10058, _XMLNSTR("Can not send after socket is closed"))
+#endif  // _MLN_NET_SOCKET
+
+#ifdef _MLN_NOT_USING_NOW
+DAT(NOT_DEFINED,              _XMLNSTR("not defined"))
+#endif  // _MLN_NOT_USING_NOW
