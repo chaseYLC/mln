@@ -67,6 +67,8 @@ namespace mln
 		virtual unsigned int decReadHandlerPendingCount() = 0;
 		virtual EventReceiver* getReceiver() = 0;
 		virtual MsgUserManip* getMsgManip() = 0;
+
+		static Connection::sptr createDummyConnection(boost::asio::io_context& ioc);
 	};
 
 }//namespace mln

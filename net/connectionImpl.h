@@ -16,6 +16,8 @@ namespace mln
 		, public MemoryPool< ConnectionImpl >
 	{
 	public:
+		friend class Connection;
+
 		static std::shared_ptr< ConnectionImpl > create(NetService* owner
 			, boost::asio::io_context& ios
 			, MessageProcedure* msgProc
@@ -24,7 +26,6 @@ namespace mln
 			, const size_t connectionID
 		);
 
-		static Connection::sptr createDummyTestConnection(boost::asio::io_context& ios);
 		static const int RECV_BUFFER_SIZE = 8192;
 
 	private:

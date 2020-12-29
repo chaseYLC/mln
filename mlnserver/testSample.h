@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 
-#include <net/connectionImpl.h>
+#include <net/connection.h>
 #include <net/logManager.h>
 #include <net/memoryPool.h>
 #include <net/time/scheduler.h>
@@ -20,7 +20,7 @@ public:
 	static void TestUser()
 	{
 		// create connection
-		auto conn = mln::ConnectionImpl::createDummyTestConnection(*shared_ios.get());
+		auto conn = mln::Connection::createDummyConnection(*shared_ios.get());
 		auto currentId = conn->getIdentity();
 
 		// add user
@@ -111,7 +111,7 @@ public:
 	static void TestAsyncTask()
 	{
 		// create connection
-		auto conn = mln::ConnectionImpl::createDummyTestConnection(*shared_ios.get());
+		auto conn = mln::Connection::createDummyConnection(*shared_ios.get());
 		auto currentId = conn->getIdentity();
 
 		// add user

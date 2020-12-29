@@ -19,11 +19,11 @@ namespace mln
 	{
 	}
 
-	// for test
-	Connection::sptr ConnectionImpl::createDummyTestConnection(boost::asio::io_context& ios)
+	Connection::sptr Connection::createDummyConnection(boost::asio::io_context& ios)
 	{
 		return Connection::sptr(new ConnectionImpl(ios), ConnectionImpl::destruct);
 	}
+
 
 	ConnectionImpl::ConnectionImpl(boost::asio::io_context& ios)
 		: _ios(ios)
