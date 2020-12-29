@@ -14,17 +14,17 @@ namespace mln
 		, boost::function<void(size_t, char*)> //void facilitate(size_t, char *)
 	>;
 
-	class MessageBuffer
-		: public MemoryPool< MessageBuffer >
+	class CircularStream
+		: public MemoryPool< CircularStream >
 	{
 	public:
-		using Ptr = boost::shared_ptr< MessageBuffer >;
+		using Ptr = boost::shared_ptr< CircularStream >;
 
 		static const size_t	MAX_BUFFER_SIZE = 1024 * 32;
 
-		MessageBuffer();
-		MessageBuffer(MsgUserManip* msgManip, const bool preWriteAsHeaderSize = false);
-		MessageBuffer(const MessageBuffer& e);
+		CircularStream();
+		CircularStream(MsgUserManip* msgManip, const bool preWriteAsHeaderSize = false);
+		CircularStream(const CircularStream& e);
 
 		void clear();
 		size_t size() const;
@@ -36,25 +36,25 @@ namespace mln
 		size_t remainWriteSize() const;
 		void arrange();
 
-		MessageBuffer& write(char* src, size_t count);
-		MessageBuffer& write(size_t count);
+		CircularStream& write(char* src, size_t count);
+		CircularStream& write(size_t count);
 
-		MessageBuffer& read(char* dst, size_t count);
-		MessageBuffer& read(size_t count);
-		MessageBuffer& readAll();
+		CircularStream& read(char* dst, size_t count);
+		CircularStream& read(size_t count);
+		CircularStream& readAll();
 
 		template< typename T >
-		inline MessageBuffer& operator >> (T& b) {
+		inline CircularStream& operator >> (T& b) {
 			return read((char*)&b, sizeof(b));
 		}
 
 		template< typename T >
-		inline MessageBuffer& operator << (T& b) {
+		inline CircularStream& operator << (T& b) {
 			return write((char*)&b, sizeof(b));
 		}
 
 		template< typename T >
-		inline MessageBuffer& operator << (T&& b) {
+		inline CircularStream& operator << (T&& b) {
 			return write((char*)&b, sizeof(b));
 		}
 

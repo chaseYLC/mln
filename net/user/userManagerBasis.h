@@ -22,8 +22,8 @@ namespace mln {
 		using FreeUserType = std::function<void (UserBasis*)>;
 		using FuncTargetType = std::function< void(mln::Connection::sptr)>;
 
-		bool createUser(const mln::EncType::Type encType, void* headerPtr, mln::Connection::sptr conn, uint32_t size, mln::MessageBuffer& msg);
-		bool decryptMessage(const mln::EncType::Type encType, mln::Connection::sptr conn, uint32_t msgSize, mln::MessageBuffer& msg, mln::MessageBuffer& madeMsg);
+		bool createUser(const mln::EncType::Type encType, void* headerPtr, mln::Connection::sptr conn, uint32_t size, mln::CircularStream& msg);
+		bool decryptMessage(const mln::EncType::Type encType, mln::Connection::sptr conn, uint32_t msgSize, mln::CircularStream& msg, mln::CircularStream& madeMsg);
 		
 		bool addUserBasis(mln::Connection::sptr conn
 			, AllcoUserType allocUser

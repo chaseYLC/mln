@@ -2,7 +2,7 @@
 #include "userBasis.h"
 
 #include "../logManager.h"
-#include "../messageBuffer.h"
+#include "../circularStream.h"
 
 namespace mln {
 

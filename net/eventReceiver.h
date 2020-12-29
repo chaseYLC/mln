@@ -14,7 +14,7 @@ namespace mln
 	public:
 		using fp_default = std::function<void(Connection::sptr)>;
 		using fp_update = std::function<void(uint64_t)>;
-		using fp_noHandler = std::function<void(Connection::sptr, MessageBuffer&)>;
+		using fp_noHandler = std::function<void(Connection::sptr, CircularStream&)>;
 		using fp_initHandler = std::function<void(MessageProcedure*)>;
 
 		fp_default onAccept = nullptr;

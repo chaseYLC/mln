@@ -4,17 +4,17 @@
 #include <type_traits>
 #include <utility>
 
-#include "messageBuffer.h"
+#include "circularStream.h"
 #include "logManager.h"
 
 namespace mln
 {
-	MessageBuffer::MessageBuffer()
+	CircularStream::CircularStream()
 	{
 		clear();
 	}
 
-	MessageBuffer::MessageBuffer(MsgUserManip* msgManip, const bool preWriteAsHeaderSize /*= false*/)
+	CircularStream::CircularStream(MsgUserManip* msgManip, const bool preWriteAsHeaderSize /*= false*/)
 		: _manip(msgManip)
 	{
 		clear();
@@ -25,37 +25,37 @@ namespace mln
 
 	}
 
-	MessageBuffer::MessageBuffer(const MessageBuffer& e)
+	CircularStream::CircularStream(const CircularStream& e)
 	{
 		clear();
 
-		write(const_cast<MessageBuffer&>(e)._buffer, const_cast<MessageBuffer&>(e).size());
+		write(const_cast<CircularStream&>(e)._buffer, const_cast<CircularStream&>(e).size());
 	}
 
-	void MessageBuffer::clear()
+	void CircularStream::clear()
 	{
 		_read = _buffer;
 		_write = _buffer;
 	}
 
-	size_t MessageBuffer::size() const
+	size_t CircularStream::size() const
 	{
 		return _write - _read;
 	}
 
-	void MessageBuffer::facilitate()
+	void CircularStream::facilitate()
 	{
 		if (_manip) {
 			std::get<1>(*_manip)(size(), _read);
 		}
 	}
 
-	char* MessageBuffer::data() const
+	char* CircularStream::data() const
 	{
 		return _read;
 	}
 
-	bool MessageBuffer::readable(char* dst, size_t count)
+	bool CircularStream::readable(char* dst, size_t count)
 	{
 		if (false == readable(count)) {
 			return false;
@@ -64,22 +64,22 @@ namespace mln
 		return true;
 	}
 
-	bool MessageBuffer::readable(size_t count) const
+	bool CircularStream::readable(size_t count) const
 	{
 		return _read + count <= _write;
 	}
 
-	char* MessageBuffer::enableBuffer() const
+	char* CircularStream::enableBuffer() const
 	{
 		return _write;
 	}
 
-	size_t MessageBuffer::remainWriteSize() const
+	size_t CircularStream::remainWriteSize() const
 	{
 		return _buffer + MAX_BUFFER_SIZE - _write;
 	}
 
-	void MessageBuffer::arrange()
+	void CircularStream::arrange()
 	{
 		if (_read == _write) {
 			clear();
@@ -93,11 +93,11 @@ namespace mln
 		}
 	}
 
-	MessageBuffer& MessageBuffer::write(char* src, size_t count)
+	CircularStream& CircularStream::write(char* src, size_t count)
 	{
 		if (MAX_BUFFER_SIZE < (size() + count))
 		{
-			throw std::runtime_error("buffer overrun in MessageBuffer");
+			throw std::runtime_error("buffer overrun in CircularStream");
 		}
 
 		memcpy(_write, src, count);
@@ -106,22 +106,22 @@ namespace mln
 	}
 
 
-	MessageBuffer& MessageBuffer::write(size_t count)
+	CircularStream& CircularStream::write(size_t count)
 	{
 		if (MAX_BUFFER_SIZE < (size() + count))
 		{
-			throw std::runtime_error("buffer overrun in MessageBuffer");
+			throw std::runtime_error("buffer overrun in CircularStream");
 		}
 
 		_write += count;
 		return *this;
 	}
 
-	MessageBuffer& MessageBuffer::read(char* dst, size_t count)
+	CircularStream& CircularStream::read(char* dst, size_t count)
 	{
 		if (false == readable(count))
 		{
-			throw std::runtime_error("buffer can't readable in MessageBuffer");
+			throw std::runtime_error("buffer can't readable in CircularStream");
 		}
 
 		if (remainWriteSize() < MAX_BUFFER_SIZE / 3 * 2)
@@ -135,11 +135,11 @@ namespace mln
 		return *this;
 	}
 
-	MessageBuffer& MessageBuffer::read(size_t count)
+	CircularStream& CircularStream::read(size_t count)
 	{
 		if (false == readable(count))
 		{
-			throw std::runtime_error("buffer can't readable in MessageBuffer");
+			throw std::runtime_error("buffer can't readable in CircularStream");
 		}
 
 		if (remainWriteSize() < MAX_BUFFER_SIZE / 3 * 2)
@@ -152,7 +152,7 @@ namespace mln
 		return *this;
 	}
 
-	MessageBuffer& MessageBuffer::readAll()
+	CircularStream& CircularStream::readAll()
 	{
 		_read = _write = _buffer;
 		return *this;

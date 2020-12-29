@@ -6,7 +6,7 @@
 #endif
 
 #include <iostream>
-#include <net/messageBuffer.h>
+#include <net/circularStream.h>
 #include <net/testInterface.h>
 #include <net/logManager.h>
 #include <net/simdjson.h>

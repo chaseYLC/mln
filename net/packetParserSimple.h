@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "messageProcedure.h"
-#include "messageBuffer.h"
+#include "circularStream.h"
 #include <functional>
 #include <mutex>
 #include <tuple>
@@ -50,17 +50,17 @@ class SIMPLE_PACKET_PARSING_SUPPORT
 public:
 	static mln::MsgUserManip* getMsgManipulator();
 
-	static bool packetParser(mln::Connection::sptr spConn, mln::MessageBuffer::Ptr msg
+	static bool packetParser(mln::Connection::sptr spConn, mln::CircularStream::Ptr msg
 		, mln::MessageProcedure &msg_proc
 		, mln::MessageProcedure::msgMapTy& memberFuncMap
 		, mln::MessageProcedure::msgMapTy& staticFuncMap);
 
-	static bool packetParser_notUseEnc(mln::Connection::sptr spConn, mln::MessageBuffer::Ptr msg
+	static bool packetParser_notUseEnc(mln::Connection::sptr spConn, mln::CircularStream::Ptr msg
 		, mln::MessageProcedure &msg_proc
 		, mln::MessageProcedure::msgMapTy& memberFuncMap
 		, mln::MessageProcedure::msgMapTy& staticFuncMap);
 
-	static bool packetParser_performanced(mln::Connection::sptr spConn, mln::MessageBuffer::Ptr msg
+	static bool packetParser_performanced(mln::Connection::sptr spConn, mln::CircularStream::Ptr msg
 		, mln::MessageProcedure &msg_proc
 		, mln::MessageProcedure::msgMapTy& memberFuncMap
 		, mln::MessageProcedure::msgMapTy& staticFuncMap);

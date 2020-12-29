@@ -3,7 +3,7 @@
 #include <functional>
 #include <memory>
 #include <boost/asio.hpp>
-#include "messageBuffer.h"
+#include "circularStream.h"
 
 namespace mln
 {
@@ -45,7 +45,7 @@ namespace mln
 
 		virtual void start_accept() = 0;
 		virtual void start_connect() = 0;
-		virtual void send(MessageBuffer::Ptr msg) = 0;
+		virtual void send(CircularStream::Ptr msg) = 0;
 		virtual void sendRaw(void* sendBuffer, const size_t sendSize) = 0;
 		virtual void sendPacket(void* sendBuffer, const size_t sendSize, const bool writeHeader) = 0;
 

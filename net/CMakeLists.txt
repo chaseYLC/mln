@@ -53,7 +53,7 @@ add_library(mln STATIC
     exceptionHandler.cpp
     jsoncpp.cpp
     logManager.cpp
-    messageBuffer.cpp
+    circularStream.cpp
     messageProcedure.cpp
     netService.cpp
     netServiceAcceptor.cpp
@@ -66,31 +66,3 @@ add_library(mln STATIC
     user/userBasis.cpp
     user/userManagerBasis.cpp
 )
-
-install(TARGETS mln DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
-install(FILES connection.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES connectionImpl.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES eventReceiver.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES logManager.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES macros.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES memoryPool.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES messageBuffer.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES messageProcedure.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES netService.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES netServiceAcceptor.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES netServiceConnector.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES netServiceImpl.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES netUtil.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES packetEncType.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES packetParserSimple.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES room.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES roomManager.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES roomResult.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES singleton.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES stdafx.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES testInterface.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES threadStaticValue.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES timeUtil.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-install(FILES xmlParsingSupport.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/net)
-
-install(FILES ../mln_constants.dat DESTINATION ${CMAKE_INSTALL_PREFIX}/include)

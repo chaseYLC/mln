@@ -2,7 +2,7 @@
 
 #include "connection.h"
 #include "memoryPool.h"
-#include "messageBuffer.h"
+#include "circularStream.h"
 
 namespace mln
 {
@@ -44,7 +44,7 @@ namespace mln
 
 		void start_accept() override;
 		void start_connect() override;
-		void send(MessageBuffer::Ptr msg) override;
+		void send(CircularStream::Ptr msg) override;
 		void sendRaw(void* sendBuffer, const size_t sendSize) override;
 		void sendPacket(void* sendBuffer, const size_t sendSize, const bool writeHeader) override;
 
@@ -70,7 +70,7 @@ namespace mln
 
 	private:
 		void read_handler(const boost::system::error_code& ec, size_t bytes_transferred);
-		void write_handler(const boost::system::error_code& ec, size_t bytes_transferred, MessageBuffer::Ptr sendBuffer);
+		void write_handler(const boost::system::error_code& ec, size_t bytes_transferred, CircularStream::Ptr sendBuffer);
 
 		void renewExpireTime();
 		void onExpireTime(const boost::system::error_code& ec);
@@ -84,7 +84,7 @@ namespace mln
 		boost::asio::ip::tcp::socket _socket;
 		boost::asio::deadline_timer _keepTimer;
 		boost::asio::deadline_timer _closeReserveTimer;
-		MessageBuffer::Ptr _msg;
+		CircularStream::Ptr _msg;
 		char _recvBuffer[RECV_BUFFER_SIZE];
 		std::shared_ptr<UserBasis> _spUser;
 

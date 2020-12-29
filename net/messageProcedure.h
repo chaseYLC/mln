@@ -5,7 +5,7 @@
 #include <unordered_map>
 
 #include "connection.h"
-#include "messageBuffer.h"
+#include "circularStream.h"
 
 namespace mln
 {
@@ -21,15 +21,15 @@ namespace mln
 			NOT_SET_CIPHER_VALUE = UINT8_MAX + 1,
 		};
 
-		using msgHandlerFn = std::function<bool(Connection::sptr, uint32_t, MessageBuffer&)>;
+		using msgHandlerFn = std::function<bool(Connection::sptr, uint32_t, CircularStream&)>;
 		using msgMapTy = std::unordered_map<uint32_t, msgHandlerFn >;
 
-		using customMessageParser = std::function<bool(Connection::sptr, MessageBuffer::Ptr
+		using customMessageParser = std::function<bool(Connection::sptr, CircularStream::Ptr
 			, MessageProcedure&, msgMapTy&, msgMapTy&)>;
 
-		using msgHandlerFn_cipherInit = std::function<bool(const uint8_t, void*, Connection::sptr, uint32_t, MessageBuffer&)>;
-		using msgHandlerFn_cipherDEC = std::function<bool(const uint8_t, Connection::sptr, uint32_t, MessageBuffer&, MessageBuffer&)>;
-		using msgHandlerFn_headerBody = std::function<bool(Connection::sptr, void*, MessageBuffer&)>;
+		using msgHandlerFn_cipherInit = std::function<bool(const uint8_t, void*, Connection::sptr, uint32_t, CircularStream&)>;
+		using msgHandlerFn_cipherDEC = std::function<bool(const uint8_t, Connection::sptr, uint32_t, CircularStream&, CircularStream&)>;
+		using msgHandlerFn_headerBody = std::function<bool(Connection::sptr, void*, CircularStream&)>;
 
 		using encParameters = std::tuple<uint8_t	// enc type
 			, msgHandlerFn_cipherInit		// Init function type
@@ -46,7 +46,7 @@ namespace mln
 		template< typename __type >
 		bool registMessage(
 			unsigned int protocol
-			, bool(__type::* fn)(Connection::sptr, uint32_t, MessageBuffer&)
+			, bool(__type::* fn)(Connection::sptr, uint32_t, CircularStream&)
 			, __type* instance)
 		{
 			auto it = _instanceElements.find(protocol);
@@ -63,8 +63,8 @@ namespace mln
 		template< typename __type >
 		void setCipher(
 			const uint8_t encType
-			, bool(__type::* fnEnc)(uint8_t, void*, Connection::sptr, uint32_t, MessageBuffer&)
-			, bool(__type::* fnDec)(uint8_t, Connection::sptr, uint32_t, MessageBuffer&, MessageBuffer&)
+			, bool(__type::* fnEnc)(uint8_t, void*, Connection::sptr, uint32_t, CircularStream&)
+			, bool(__type::* fnDec)(uint8_t, Connection::sptr, uint32_t, CircularStream&, CircularStream&)
 			, __type* instance)
 		{
 			_cipherHandlers[encType] = std::make_tuple(encType
@@ -85,7 +85,7 @@ namespace mln
 
 		template< typename __type >
 		void setMsgHandler_HeaderBody(
-			bool(__type::* fn)(Connection::sptr, void*, MessageBuffer&)
+			bool(__type::* fn)(Connection::sptr, void*, CircularStream&)
 			, __type* instance)
 		{
 			_msgHandlerHeaderBody = std::bind(fn, instance, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
@@ -103,7 +103,7 @@ namespace mln
 		uint16_t getUserCipherType() const { return _userCipherType; }
 
 	protected:
-		bool dispatch(Connection::sptr spConn, MessageBuffer::Ptr msg);
+		bool dispatch(Connection::sptr spConn, CircularStream::Ptr msg);
 		/*virtual bool isServicePending() const = 0;
 		virtual void detatchReceiver() = 0;*/
 

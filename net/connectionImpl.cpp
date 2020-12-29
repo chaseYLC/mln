@@ -4,7 +4,7 @@
 #include <atomic>
 #include <boost/bind.hpp>
 #include <boost/asio/write.hpp>
-#include "messageBuffer.h"
+#include "circularStream.h"
 #include "messageProcedure.h"
 #include "netServiceAcceptor.h"
 #include "logManager.h"
@@ -149,7 +149,7 @@ namespace mln
 
 	void ConnectionImpl::start_accept()
 	{
-		_msg = MessageBuffer::Ptr(new MessageBuffer(_msgManipulator), MessageBuffer::destruct);
+		_msg = CircularStream::Ptr(new CircularStream(_msgManipulator), CircularStream::destruct);
 
 		_socket.set_option(boost::asio::ip::tcp::no_delay(true));
 		_socket.set_option(boost::asio::socket_base::linger(true, 0));
@@ -169,7 +169,7 @@ namespace mln
 
 	void ConnectionImpl::start_connect()
 	{
-		_msg = MessageBuffer::Ptr(new MessageBuffer(_msgManipulator), MessageBuffer::destruct);
+		_msg = CircularStream::Ptr(new CircularStream(_msgManipulator), CircularStream::destruct);
 
 		_socket.set_option(boost::asio::ip::tcp::no_delay(true));
 		_socket.set_option(boost::asio::socket_base::linger(true, 0));
@@ -187,7 +187,7 @@ namespace mln
 		renewExpireTime();
 	}
 
-	void ConnectionImpl::send(MessageBuffer::Ptr msg)
+	void ConnectionImpl::send(CircularStream::Ptr msg)
 	{
 		msg->facilitate();
 
@@ -206,7 +206,7 @@ namespace mln
 
 	void ConnectionImpl::sendRaw(void* sendBuffer, const size_t sendSize)
 	{
-		auto msg = MessageBuffer::Ptr(new MessageBuffer(), MessageBuffer::destruct);
+		auto msg = CircularStream::Ptr(new CircularStream(), CircularStream::destruct);
 
 		boost::asio::async_write(
 			_socket
@@ -223,7 +223,7 @@ namespace mln
 
 	void ConnectionImpl::sendPacket(void* sendBuffer, const size_t sendSize, const bool writeHeader)
 	{
-		MessageBuffer::Ptr msg = MessageBuffer::Ptr(new MessageBuffer(_msgManipulator, writeHeader), MessageBuffer::destruct);
+		CircularStream::Ptr msg = CircularStream::Ptr(new CircularStream(_msgManipulator, writeHeader), CircularStream::destruct);
 
 		msg->write((char*)sendBuffer, sendSize);
 		this->send(msg);
@@ -240,7 +240,7 @@ namespace mln
 			}
 			catch (std::exception& e) {
 				LOGW("network data was received but could not be processed and the queue was full.\
-Increase the size of the MessageBuffer's size or reduce the number of requests");
+Increase the size of the CircularStream's size or reduce the number of requests");
 				closeReserve(0);
 				return;
 			}
@@ -312,7 +312,7 @@ Increase the size of the MessageBuffer's size or reduce the number of requests")
 	}
 
 
-	void ConnectionImpl::write_handler(const boost::system::error_code& ec, size_t bytes_transferred, MessageBuffer::Ptr sendBuffer)
+	void ConnectionImpl::write_handler(const boost::system::error_code& ec, size_t bytes_transferred, CircularStream::Ptr sendBuffer)
 	{
 		if (!ec) {
 			fmt::print("write data. size:{}\n", bytes_transferred);

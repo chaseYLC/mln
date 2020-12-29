@@ -1,13 +1,13 @@
 ﻿#include "stdafx.h"
 
 #include "../logManager.h"
-#include "../messageBuffer.h"
+#include "../circularStream.h"
 
 #include "userManagerBasis.h"
 #include "userBasis.h"
 
 namespace mln {
-	bool UserManagerBasis::createUser(const mln::EncType::Type encType, void* headerPtr, mln::Connection::sptr conn, uint32_t size, mln::MessageBuffer& msg)
+	bool UserManagerBasis::createUser(const mln::EncType::Type encType, void* headerPtr, mln::Connection::sptr conn, uint32_t size, mln::CircularStream& msg)
 	{
 		//if (conn->getTag() != nullptr)
 		//{
@@ -49,7 +49,7 @@ namespace mln {
 		return true;
 	}
 
-	bool UserManagerBasis::decryptMessage(const mln::EncType::Type encType, mln::Connection::sptr conn, uint32_t msgSize, mln::MessageBuffer& msg, mln::MessageBuffer& madeMsg)
+	bool UserManagerBasis::decryptMessage(const mln::EncType::Type encType, mln::Connection::sptr conn, uint32_t msgSize, mln::CircularStream& msg, mln::CircularStream& madeMsg)
 	{
 		//chase_lobbysvr::User *user = (chase_lobbysvr::User *)conn->getTag();
 		//if (nullptr == user)

@@ -17,7 +17,7 @@ public:
 
 	void onExpiredSession(mln::Connection::sptr spConn);
 
-	void noHandler(mln::Connection::sptr spConn, mln::MessageBuffer& msg);
+	void noHandler(mln::Connection::sptr spConn, mln::CircularStream& msg);
 	//////////////////////////////////////////////////////////////////
 public:
 	void initHandler(mln::MessageProcedure* msgProc);

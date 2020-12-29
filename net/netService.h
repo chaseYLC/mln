@@ -9,7 +9,7 @@
 
 namespace mln
 {
-	class MessageBuffer;
+	class CircularStream;
 	class Connection;
 	class NetServiceAcceptor;
 	class NetServiceConnector;

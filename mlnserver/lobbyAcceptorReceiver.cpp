@@ -28,7 +28,7 @@ void LobbyAcceptorReceiver::onUpdate(uint64_t elapse)
 
 }
 
-void LobbyAcceptorReceiver::noHandler(mln::Connection::sptr spConn, mln::MessageBuffer& msg)
+void LobbyAcceptorReceiver::noHandler(mln::Connection::sptr spConn, mln::CircularStream& msg)
 {
 	LOGW("no Handler.");
 	spConn->closeReserve(0);

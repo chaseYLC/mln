@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <net/messageProcedure.h>
-#include <net/messageBuffer.h>
+#include <net/circularStream.h>
 #include <functional>
 #include <mutex>
 #include <tuple>
@@ -30,7 +30,7 @@ namespace mlnserver {
 	public:
 		static mln::MsgUserManip* getMsgManipulator();
 
-		static bool packetParser(mln::Connection::sptr spConn, mln::MessageBuffer::Ptr msg
+		static bool packetParser(mln::Connection::sptr spConn, mln::CircularStream::Ptr msg
 			, mln::MessageProcedure& msg_proc
 			, mln::MessageProcedure::msgMapTy& memberFuncMap
 			, mln::MessageProcedure::msgMapTy& staticFuncMap);

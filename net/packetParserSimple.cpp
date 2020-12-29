@@ -21,7 +21,7 @@ mln::MsgUserManip* SIMPLE_PACKET_PARSING_SUPPORT::getMsgManipulator()
 	return &msgMainp;
 }
 
-bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser(mln::Connection::sptr spConn, mln::MessageBuffer::Ptr msg
+bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser(mln::Connection::sptr spConn, mln::CircularStream::Ptr msg
 	, mln::MessageProcedure &msg_proc
 	, mln::MessageProcedure::msgMapTy& memberFuncMap
 	, mln::MessageProcedure::msgMapTy& staticFuncMap)
@@ -79,7 +79,7 @@ bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser(mln::Connection::sptr spConn, m
 
 		readStartFromMainKey = (total_size == sizeof(header.partKey));
 
-		MessageBuffer procMsg;
+		CircularStream procMsg;
 
 		auto ciperData = (MessageProcedure::NOT_SET_CIPHER_VALUE == msg_proc.getUserCipherType())
 			? msg_proc.getCipherHandler(defaultCipherType)
@@ -149,7 +149,7 @@ bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser(mln::Connection::sptr spConn, m
 	return true;
 }
 
-bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser_notUseEnc(mln::Connection::sptr spConn, mln::MessageBuffer::Ptr msg
+bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser_notUseEnc(mln::Connection::sptr spConn, mln::CircularStream::Ptr msg
 	, mln::MessageProcedure &msg_proc
 	, mln::MessageProcedure::msgMapTy& memberFuncMap
 	, mln::MessageProcedure::msgMapTy& staticFuncMap)
@@ -205,7 +205,7 @@ bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser_notUseEnc(mln::Connection::sptr
 
 		readStartFromMainKey = (total_size == sizeof(header.partKey));
 
-		mln::MessageBuffer procMsg;
+		mln::CircularStream procMsg;
 		msg->read(procMsg.enableBuffer(), part_body_size);
 		procMsg.write(part_body_size);
 
@@ -234,7 +234,7 @@ bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser_notUseEnc(mln::Connection::sptr
 }
 
 
-bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser_performanced(mln::Connection::sptr spConn, mln::MessageBuffer::Ptr msg
+bool SIMPLE_PACKET_PARSING_SUPPORT::packetParser_performanced(mln::Connection::sptr spConn, mln::CircularStream::Ptr msg
 	, mln::MessageProcedure &msg_proc
 	, mln::MessageProcedure::msgMapTy& memberFuncMap
 	, mln::MessageProcedure::msgMapTy& staticFuncMap)

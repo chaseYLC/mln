@@ -22,7 +22,7 @@ namespace mln
 		return _staticElements.emplace(protocol, fn).second;
 	}
 
-	bool MessageProcedure::dispatch(Connection::sptr spConn, MessageBuffer::Ptr msg)
+	bool MessageProcedure::dispatch(Connection::sptr spConn, CircularStream::Ptr msg)
 	{
 		if (Connection::status::open != spConn->get_status()) {
 			return false;

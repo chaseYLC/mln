@@ -27,7 +27,7 @@ namespace mlnserver {
 		return &msgMainp;
 	}
 
-	bool PacketJsonParser::packetParser(mln::Connection::sptr spConn, mln::MessageBuffer::Ptr msg
+	bool PacketJsonParser::packetParser(mln::Connection::sptr spConn, mln::CircularStream::Ptr msg
 		, mln::MessageProcedure& msg_proc
 		, mln::MessageProcedure::msgMapTy& memberFuncMap
 		, [[maybe_unused]] mln::MessageProcedure::msgMapTy& staticFuncMap)
@@ -47,7 +47,7 @@ namespace mlnserver {
 				break;
 			}
 
-			auto packet = std::make_shared<mln::MessageBuffer>();
+			auto packet = std::make_shared<mln::CircularStream>();
 			packet->write((char*)(msg->data()), header.size);
 			msg->read(header.size);
 
