@@ -1,0 +1,7 @@
+﻿#ifdef _XRNET_SOCKET
+DAT(SHUTDOWN,              10058, _XMLNSTR("Can not send after socket is closed"))
+#endif  // _XRNET_SOCKET
+
+#ifdef _XRNET_NOT_USING_NOW
+DAT(NOT_DEFINED,              _XMLNSTR("not defined"))
+#endif  // _XRNET_NOT_USING_NOW

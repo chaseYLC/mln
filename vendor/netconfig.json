@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "sections": [
+    {
+      "name": "ACCEPTOR",
+      "fields": {
+        "SERVER_PORT": 28101,
+        "UPDATE_TIME_MS": 1000,
+        "KEEP_ALIVE": 60,
+        "UPDATE_TIME_FOR_ROOM_MS": 50,
+        "NET_IO_WORKER_CNT": 20
+      }
+    },
+    {
+      "name": "LOG",
+      "fields": {
+        "LOG_FILE_SIZE_MB": 100,
+        "LOG_FILE_KEEP_MAX_CNT": 30,
+        "LOG_FLUSH_SEC": 0
+      }
+    },
+    {
+      "name": "DEV_SETTING",
+      "fields": {
+        "SKIP_ROOM_OBJ_LOADING": 0,
+        "LOCAL_DEV": 0,
+        "TELNET_TEST_CONSOLE_PORT": 30000,
+        "TEST_CLIENT_PROFILING_MODE": 0
+      }
+    }
+  ]
+}

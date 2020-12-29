@@ -1,0 +1,57 @@
+﻿# User solutions
+*.suo
+*.user
+*.log
+
+Makefile
+CMakeCache.txt
+.vs/
+*.pdb
+*.ilk
+.bash_history
+.gitconfig
+
+# Debug and Release directories
+Debug/
+Release/
+build/
+.vscode/
+
+CMakeFiles/
+
+# Browsing database
+*.sdf
+*.opensdf
+
+# NuGet packages directory
+packages/
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+ipch/
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+#*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
