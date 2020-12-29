@@ -36,8 +36,6 @@
 inline std::shared_ptr< boost::asio::io_context > shared_ios
  = std::make_shared<boost::asio::io_context>();
 
-inline std::mt19937 *g_rand;
-
 typedef struct tagTSV_ID {
 	enum {
 		DB_ERROR = 1,
@@ -45,9 +43,6 @@ typedef struct tagTSV_ID {
 		REDIS_CLIENT = 2,
 	};
 }TSV_ID;
-
-#define RAND_NO		((*g_rand)())
-
 
 #define RSP_SEQ	"packetSequenceNum"
 #define RSP_RC	"resultCode"

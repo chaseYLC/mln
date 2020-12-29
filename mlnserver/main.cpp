@@ -1,12 +1,11 @@
 ﻿#include "stdafx.h"
-#include <chrono>
-#include <random>
 
 #include <boost/filesystem.hpp>
 #include <fmt/core.h>
 #include <net/logManager.h>
 #include <net/netServiceAcceptor.h>
 #include <net/testInterface.h>
+#include <net/time/time.h>
 #include <user/lobbyUser.h>
 
 #include "configuration.h"
@@ -79,23 +78,10 @@ bool ioServiceThread()
 	return true;
 }
 
-void setRandom()
-{
-	auto curTime = std::chrono::system_clock::now();
-	auto dur = curTime.time_since_epoch();
-	auto mills = std::chrono::duration_cast<std::chrono::microseconds>(dur).count();
-
-	g_rand = new std::mt19937((unsigned int)mills);
-}
-
 
 int main(int argc, char* argv[])
 {
-	/*namespace fs = boost::filesystem;
-	fs::path full_path = fs::system_complete("netconfig.json");
-	std::string confPath = full_path.string();*/
-
-	setRandom();
+	mln::time::initRandom();
 
 	if (false == Configuration::instance()->LoadScript("netconfig.json")) {
 		fmt::print("Failed LoadScript()");

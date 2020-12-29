@@ -1,44 +1,57 @@
 ﻿#pragma once
 
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include <net/macros.h>
+#include <chrono>
+#include <cstdint>
+#include <random>
 
 namespace mln
 {
-	class Time
+	namespace time
 	{
-	public:
-		inline static boost::posix_time::ptime TimeUtil::time_t_epoch(boost::gregorian::date(1970, 1, 1));
+		inline static std::mt19937* s_rand;
 
-		static int64_t getUniversalTimeSec()
-		{
-			namespace pt = boost::posix_time;
+		using timeType = int64_t;	// time_t
 
-			boost::posix_time::time_duration diff =
-				boost::posix_time::second_clock::universal_time() - time_t_epoch;
-
-			return diff.total_seconds();
+		template < typename duration >
+		timeType currentTimestamp() {
+			return std::chrono::duration_cast<duration>(
+				std::chrono::system_clock::now().time_since_epoch()
+				).count();
 		}
 
-		static int64_t getUniversalTimeMS()
-		{
-			namespace pt = boost::posix_time;
-
-			boost::posix_time::time_duration diff =
-				boost::posix_time::microsec_clock::universal_time() - time_t_epoch;
-
-			return diff.total_milliseconds();
+		timeType currentTimestampSec(){
+			return currentTimestamp<std::chrono::seconds>();
 		}
 
-		static int64_t getLocalTimeSec()
+		timeType currentTimestampMs()
 		{
-			namespace pt = boost::posix_time;
-			pt::ptime now = boost::posix_time::second_clock::local_time();
-
-			static boost::posix_time::ptime time_t_epoch(boost::gregorian::date(1970, 1, 1));
-			boost::posix_time::time_duration diff = now - time_t_epoch;
-
-			return diff.total_seconds();
+			return currentTimestamp<std::chrono::milliseconds>();
 		}
 
-	};
+		void initRandom() {
+			s_rand = new std::mt19937(
+				(unsigned int)currentTimestampMs()
+			);
+		}
+
+		int64_t getRandomNo() {
+			assertm(s_rand, "not initialized. call \"initRamdom()\" please.");
+			return ((*s_rand)());
+		}
+
+		int64_t getRandomNo(const int64_t min, const int64_t max) {
+			assertm(s_rand, "not initialized. call \"initRamdom()\" please.");
+			std::uniform_int_distribution<int64_t> dist(min, max);
+			return dist(*s_rand);
+		}
+
+		std::uniform_int_distribution<int64_t> getRandomNoDist(const int64_t min, const int64_t max) {
+			assertm(s_rand, "not initialized. call \"initRamdom()\" please.");
+			return std::uniform_int_distribution<int64_t>(min, max);
+		}
+
+
+	};//namespace time
 }//namespace mln
