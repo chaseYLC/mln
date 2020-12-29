@@ -49,7 +49,6 @@ endif()
 add_library(mln STATIC
     stdafx.cpp
     connectionImpl.cpp
-    dbManager.cpp
     exceptionHandler.cpp
     jsoncpp.cpp
     logManager.cpp
