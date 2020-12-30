@@ -20,6 +20,7 @@ set(CMAKE_INSTALL_DEFAULT_DIRECTORY_PERMISSIONS
 
 add_compile_definitions(USE_SPDLOG_HEX_SUPPORT) 
 add_compile_definitions(USE_SPDLOG_HEX_RINGBUFFER_SINK) 
+add_compile_options(/permissive) # for "net/config/config.h" template paramter
 
 
 # SET ( CMAKE_BUILD_TYPE "Debug" CACHE STRING "Build type (default Debug)" )

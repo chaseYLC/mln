@@ -22,7 +22,6 @@ if(WIN32)
     message("Platfrom Windows")
 elseif(UNIX)
     message("Platform Unix")
-    add_compile_options(/permissive) # for "net/config/config.h" template paramter
 endif()
 
 add_subdirectory("net")
