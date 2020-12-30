@@ -4,7 +4,7 @@
 * using [spdlog](https://github.com/gabime/spdlog)
 * supported json(using jsoncpp and [simdjson](https://github.com/simdjson/simdjson))
 
-# required
+# Required
 * CMake [>=3.12]
 * boost 1.72
 
