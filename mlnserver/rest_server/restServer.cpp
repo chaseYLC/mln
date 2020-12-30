@@ -207,7 +207,7 @@ template<
 void
 fail(beast::error_code ec, char const* what)
 {
-    LOGE("failed TRestServer(). error:{}, msg:{}", ec.message(), what);
+    LOGE("failed RestServer(). error:{}, msg:{}", ec.message(), what);
 }
 
 // This is the C++11 equivalent of a generic lambda.
@@ -288,14 +288,14 @@ do_session(
     // At this point the connection is closed gracefully
 }
 
-void TRestServer::Start(const int port)
+void RestServer::Start(const int port)
 {
     if (0 >= port) {return;}
 
-    std::thread{ std::bind(&TRestServer::Accept, this, port) }.detach();
+    std::thread{ std::bind(&RestServer::Accept, this, port) }.detach();
 }
 
-void TRestServer::Accept(const int port)
+void RestServer::Accept(const int port)
 {
     try {
         auto const address = net::ip::make_address("0.0.0.0");

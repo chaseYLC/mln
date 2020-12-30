@@ -34,7 +34,7 @@ void post_asio_start()
 	
 	TestFrameworks::Play();
 
-	TRestServer::instance()->Start(
+	RestServer::instance()->Start(
 		CONF->GetValueInt(ConfigTags::RESTSVC_BIND_PORT, 28888)
 	);
 }

@@ -3,8 +3,8 @@
 #include <net/singleton.h>
 
 namespace mlnserver {
-	class TRestServer
-		: public mln::SingletonLight<TRestServer>
+	class RestServer
+		: public mln::SingletonLight<RestServer>
 	{
 	public:
 		void Start(const int port);
