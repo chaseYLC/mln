@@ -5,7 +5,7 @@
 #include <net/logManager.h>
 #include <net/netServiceAcceptor.h>
 #include <net/packets/packetParserJson.h>
-#include <net/testInterface.h>
+#include <net/input/inputManager.h>
 #include <net/time/time.h>
 #include <user/lobbyUser.h>
 
@@ -52,10 +52,10 @@ void initTestInterface()
 
 	keyEventHandler::instance()->registCallback(shared_ioc);
 
-	mln::TestIntarface::instance()->start(
+	mln::InputManager::instance()->start(
 		shared_ioc.get()		// use nullptr if not using boost-asio
-		//, mln::TestIntarface::FUNC::wait_keyboardEvent
-		, mln::TestIntarface::FUNC::watchdog
+		//, mln::InputManager::FUNC::wait_keyboardEvent
+		, mln::InputManager::FUNC::watchdog
 		);
 }
 

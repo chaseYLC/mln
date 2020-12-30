@@ -51,8 +51,7 @@ add_library(mln STATIC
     circularStream.cpp
     connectionImpl.cpp
     exceptionHandler.cpp
-    input/testInterface.cpp
-    jsoncpp.cpp
+    "input/inputManager.cpp"    jsoncpp.cpp
     logManager.cpp
     messageProcedure.cpp
     netService.cpp

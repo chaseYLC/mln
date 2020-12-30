@@ -8,7 +8,7 @@
 
 #include <thread>
 
-#include <net/testInterface.h>
+#include <net/input/inputManager.h>
 #include <net/logManager.h>
 
 #pragma warning( disable:4996)
@@ -52,7 +52,7 @@ void keyEventHandler::registCallback(std::shared_ptr<boost::asio::io_context> io
 {
 	m_ios = ios;
 
-	mln::TestIntarface::instance()->setMyKeyEventCallback(
+	mln::InputManager::instance()->setMyKeyEventCallback(
 		std::bind(&keyEventHandler::processKey
 		, this
 		, std::placeholders::_1));

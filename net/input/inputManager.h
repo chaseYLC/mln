@@ -8,8 +8,8 @@
 
 namespace mln
 {
-	class TestIntarface
-		: public Singleton<TestIntarface>
+	class InputManager
+		: public Singleton<InputManager>
 	{
 	public:
 		struct FUNC {
@@ -27,8 +27,8 @@ namespace mln
 			};
 		};
 
-		TestIntarface();
-		virtual ~TestIntarface() = default;
+		InputManager();
+		virtual ~InputManager() = default;
 
 		using ConsoleCallbackType =
 			std::function< std::string(

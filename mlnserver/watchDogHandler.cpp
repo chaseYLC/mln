@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <net/circularStream.h>
-#include <net/testInterface.h>
+#include <net/input/inputManager.h>
 #include <net/logManager.h>
 #include <net/simdjson.h>
 
@@ -50,7 +50,7 @@ void watchDogHandler::registCallback(std::shared_ptr<boost::asio::io_context> io
 {
 	m_ios = ios;
 
-	mln::TestIntarface::instance()->setWatchDogEventCallback(
+	mln::InputManager::instance()->setWatchDogEventCallback(
 		std::bind(&watchDogHandler::inputLine
 			, this
 			, std::placeholders::_1

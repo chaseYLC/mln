@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "testInterface.h"
+#include "inputManager.h"
 
 #ifdef _WIN32
 #include <conio.h>
@@ -14,7 +14,7 @@
 
 namespace mln
 {
-	TestIntarface::TestIntarface()
+	InputManager::InputManager()
 	{
 	}
 
@@ -22,7 +22,7 @@ namespace mln
 	{
 	}
 
-	void TestIntarface::waitKeyboardEvent()
+	void InputManager::waitKeyboardEvent()
 	{
 #ifdef _WIN32
 		boost::thread keyEvntThread([&] {
@@ -49,22 +49,22 @@ namespace mln
 #endif
 	}
 
-	size_t TestIntarface::getFuncValue(const FUNC::value_type funcValue) const
+	size_t InputManager::getFuncValue(const FUNC::value_type funcValue) const
 	{
 		return ((size_t)1) << funcValue;
 	}
 
-	bool TestIntarface::isUsingFunc(const FUNC::value_type funcValue) const
+	bool InputManager::isUsingFunc(const FUNC::value_type funcValue) const
 	{
 		return 0 != (m_usingFunctions & getFuncValue(funcValue));
 	}
 
-	void TestIntarface::keyboardEventHandler(const unsigned int vKey)
+	void InputManager::keyboardEventHandler(const unsigned int vKey)
 	{
 		defaultKeyboardEventHandler(vKey);
 	}
 
-	void TestIntarface::defaultKeyboardEventHandler(const unsigned int vKey)
+	void InputManager::defaultKeyboardEventHandler(const unsigned int vKey)
 	{
 		switch (vKey)
 		{
@@ -92,8 +92,8 @@ namespace mln
 	}
 
 	void watchDogSession(boost::shared_ptr<boost::asio::ip::tcp::socket> sockPtr
-		, TestIntarface::ConsoleCallbackType watchdogCallback
-		, TestIntarface::ConsoleCloseCallbackType watchdogClosedCallback
+		, InputManager::ConsoleCallbackType watchdogCallback
+		, InputManager::ConsoleCloseCallbackType watchdogClosedCallback
 	)
 	{
 		static const int max_length = 4096;
@@ -170,7 +170,7 @@ namespace mln
 		}
 	}
 
-	void TestIntarface::startWatchdogService()
+	void InputManager::startWatchdogService()
 	{
 		using boost::asio::ip::tcp;
 
