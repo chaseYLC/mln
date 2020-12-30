@@ -53,7 +53,7 @@ if(Boost_FOUND)
         stdafx.cpp
         
         globalObjects.cpp
-        HttpRequestManager.cpp
+        httpRequestManager.cpp
         keyEventHandler.cpp
         lobbyAcceptorReceiver.cpp
         main.cpp
