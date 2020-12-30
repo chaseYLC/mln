@@ -4,7 +4,7 @@
 #include <boost/asio.hpp>
 #include <string>
 
-#include "singleton.h"
+#include <net/singleton.h>
 
 namespace mln
 {

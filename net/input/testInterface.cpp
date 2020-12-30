@@ -9,7 +9,7 @@
 #include <iostream>
 #include <boost/chrono.hpp>
 #include <boost/thread.hpp>
-#include "logManager.h"
+#include <net/logManager.h>
 
 
 namespace mln

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "messageProcedure.h"
-#include "circularStream.h"
+#include <net/messageProcedure.h>
+#include <net/circularStream.h>
 #include <functional>
 #include <mutex>
 #include <tuple>

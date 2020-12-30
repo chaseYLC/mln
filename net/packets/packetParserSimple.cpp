@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "packetParserSimple.h"
-#include "packetEncType.h"
-#include "eventReceiver.h"
+#include <net/packetEncType.h>
+#include <net/eventReceiver.h>
 
 static std::once_flag message_header_simple_packet_manipulator_flag;
 

@@ -48,22 +48,22 @@ endif()
 # file(GLOB SOURCES  *.cpp)
 add_library(mln STATIC
     stdafx.cpp
+    circularStream.cpp
     connectionImpl.cpp
-    packets/packetParserJson.cpp
-    packets/packetJsonHandlerBase.cpp
     exceptionHandler.cpp
+    input/testInterface.cpp
     jsoncpp.cpp
     logManager.cpp
-    circularStream.cpp
     messageProcedure.cpp
     netService.cpp
     netServiceAcceptor.cpp
     netServiceConnector.cpp
     netServiceImpl.cpp
     netUtil.cpp
-    packetParserSimple.cpp
+    packets/packetJsonHandlerBase.cpp
+    packets/packetParserJson.cpp
+    packets/packetParserSimple.cpp
     simdjson.cpp
-    testInterface.cpp
     user/userBasis.cpp
     user/userManagerBasis.cpp
 )
