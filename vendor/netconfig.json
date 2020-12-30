@@ -4,7 +4,7 @@
     {
       "name": "ACCEPTOR",
       "fields": {
-        "SERVER_PORT": 28101,
+        "SERVER_PORT": 28282,
         "UPDATE_TIME_MS": 1000,
         "KEEP_ALIVE": 60,
         "UPDATE_TIME_FOR_ROOM_MS": 50,

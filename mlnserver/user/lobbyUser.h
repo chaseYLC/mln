@@ -28,7 +28,3 @@ namespace mlnserver {
 		std::weak_ptr<Room> m_wpRoom;
 	};
 };// namespace mlnserver {
-
-
-#define GET_USER_LOBBY(user)	mlnserver::User *user = (mlnserver::User *)conn->getTag();	if (nullptr == user){	LOGE("user is null. ident: {}", conn->getIdentity());	return;}
-#define GET_USER_LOBBY_BY_CONN(user, conn)	mlnserver::User *user = (mlnserver::User *)conn->getTag();	if (nullptr == user){	LOGE("user is null. ident: {}", conn->getIdentity());	return;}

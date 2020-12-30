@@ -51,12 +51,11 @@ if(Boost_FOUND)
 
     add_executable(mlnserver
         stdafx.cpp
-        
-        globalObjects.cpp
         httpRequestManager.cpp
         keyEventHandler.cpp
         lobbyAcceptorReceiver.cpp
         main.cpp
+        packetJsonHandler.cpp
         packetParserJson.cpp
         restServer/restServer.cpp
         restServer/restHandler.cpp

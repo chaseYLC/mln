@@ -29,8 +29,8 @@ namespace mlnserver {
 
 	bool PacketJsonParser::packetParser(mln::Connection::sptr spConn, mln::CircularStream::Ptr msg
 		, mln::MessageProcedure& msg_proc
-		, mln::MessageProcedure::msgMapTy& memberFuncMap
-		, [[maybe_unused]] mln::MessageProcedure::msgMapTy& staticFuncMap)
+		, [[maybe_unused]] mln::MessageProcedure::msgMapTy& memberFuncMap
+		, mln::MessageProcedure::msgMapTy& staticFuncMap)
 	{
 		packetLobby::HEADER header;
 
@@ -51,7 +51,7 @@ namespace mlnserver {
 			packet->write((char*)(msg->data()), header.size);
 			msg->read(header.size);
 
-			if (auto it = memberFuncMap.find(header.code); memberFuncMap.end() != it) {
+			if (auto it = staticFuncMap.find(header.code); staticFuncMap.end() != it) {
 				it->second(spConn, header.size, *packet.get());
 			}
 			else {

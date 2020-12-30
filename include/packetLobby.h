@@ -1,14 +1,15 @@
 ﻿#pragma once
 
 #include <type_traits>
+#include <cassert>
 #include <cstdint>
 
 #pragma warning( push )
 #pragma warning( disable : 4351 )
 
 
-#ifndef CODE_VALUE_MACRO
-#define CODE_VALUE_MACRO code = std::decay<decltype(*this)>::type::packet_value
+#ifndef PACKET_LOBBY_CODE_VALUE_MACRO
+#define PACKET_LOBBY_CODE_VALUE_MACRO header.code = std::decay<decltype(*this)>::type::packet_value
 #endif
 
 #pragma pack(1)   
@@ -29,18 +30,23 @@ namespace packetLobby
 		enum {
 			MAX_BODY_SIZE = 30000,
 			MAX_URL_STRING = 32,
-			HEAD_SIZE = 43,
+			HEADER_SIZE = 47,
 		};
 
-		TyPacketCode	code;
+#pragma region JsonPacketHeader
+		HEADER		header;
 		uint32_t	sequenceNo;
 		int8_t		isCompressed = 0;
 		int8_t		url[MAX_URL_STRING];
 		uint16_t	bodySize = 0;
+#pragma endregion
 		int8_t		jsonBody[MAX_BODY_SIZE];
 
 		PT_JSON() {
-			CODE_VALUE_MACRO;
+			static_assert(HEADER_SIZE == sizeof(PT_JSON) - sizeof(jsonBody)
+				, "check header-size");
+
+			PACKET_LOBBY_CODE_VALUE_MACRO;
 			memset(url, 0, sizeof(url));
 		}
 	};
@@ -49,10 +55,10 @@ namespace packetLobby
 	{
 		enum { packet_value = 3 };
 
-		TyPacketCode	code;
+		HEADER		header;
 
 		PT_HEARTBEAT() {
-			CODE_VALUE_MACRO;
+			PACKET_LOBBY_CODE_VALUE_MACRO;
 		}
 	};
 

@@ -4,6 +4,10 @@
 #include <net/logManager.h>
 #include <user/lobbyUserManager.h>
 
+#include "packetJsonHandler.h"
+
+
+using namespace mlnserver;
 
 void LobbyAcceptorReceiver::onAccept(mln::Connection::sptr spConn)
 {
@@ -54,5 +58,6 @@ void LobbyAcceptorReceiver::onExpiredSession(mln::Connection::sptr spConn)
 
 void LobbyAcceptorReceiver::initHandler(mln::MessageProcedure *msgProc)
 {
+	mlnserver::JsonPacketHandler::initHandlers(msgProc);
 }
 

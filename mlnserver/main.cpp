@@ -24,6 +24,8 @@
 #include <limits.h>
 #endif//#ifdef _WIN32
 
+#include "clientSample/run.h"
+
 
 using namespace mlnserver;
 
@@ -34,6 +36,11 @@ void post_asio_start()
 	RestServer::instance()->Start(
 		CONF->GetValueInt(ConfigTags::RESTSVC_BIND_PORT, 28888)
 	);
+
+	
+	// sample client
+	mlnserver::SampleClientTest::TestRun(shared_ioc, CONF->GetValueInt(ConfigTags::SERVER_PORT, 28282));
+
 }
 
 void initTestInterface()
@@ -61,7 +68,7 @@ bool ioServiceThread()
 		, PacketJsonParser::getMsgManipulator()
 		, CONF->GetValueInt(ConfigTags::UPDATE_TIME_MS, 1000)
 		, CONF->GetValueInt(ConfigTags::KEEP_ALIVE, 0) * 1000
-		, CONF->GetValueInt(ConfigTags::SERVER_PORT, 28101)
+		, CONF->GetValueInt(ConfigTags::SERVER_PORT, 28282)
 		, CONF->GetValueInt(ConfigTags::NET_IO_WORKER_CNT, boost::thread::hardware_concurrency() * 2)
 	);
 
@@ -74,7 +81,6 @@ bool ioServiceThread()
 
 	return true;
 }
-
 
 int main(int argc, char* argv[])
 {

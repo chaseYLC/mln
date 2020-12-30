@@ -20,7 +20,6 @@
 #include <def/errorCode.h>
 
 #include "configuration.h"
-#include "globalObjects.h"
 
 
 // for contents...
@@ -301,7 +300,7 @@ void RestServer::Accept(const int port)
         auto const address = net::ip::make_address("0.0.0.0");
         auto const doc_root = std::make_shared<std::string>("");
 
-        auto& ioc = *GlobalObjects::instance()->shared_ioc().get();
+        auto& ioc = *shared_ioc.get();
 
         tcp::acceptor acceptor{ ioc, {address, (uint16_t)port} };
 

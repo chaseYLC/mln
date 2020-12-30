@@ -22,6 +22,10 @@ namespace mlnserver {
 		{
 			packetLobby::HEADER* header = reinterpret_cast<packetLobby::HEADER*>(buffer);
 			header->size = currentSize;
+			header->code = packetLobby::PT_JSON::packet_value;
+
+			/*packetLobby::PT_JSON *packet = reinterpret_cast<packetLobby::PT_JSON*>(buffer);
+			int c = packet->header.size;*/
 		}
 	};
 
