@@ -58,8 +58,8 @@ if(Boost_FOUND)
         lobbyAcceptorReceiver.cpp
         main.cpp
         packetParserJson.cpp
-        rest_server/restServer.cpp
-        rest_server/restHandler.cpp
+        restServer/restServer.cpp
+        restServer/restHandler.cpp
         user/lobbyUser.cpp
         user/lobbyUserManager.cpp
         watchDogHandler.cpp

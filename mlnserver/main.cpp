@@ -12,7 +12,7 @@
 #include "keyEventHandler.h"
 #include "lobbyAcceptorReceiver.h"
 #include "packetParserJson.h"
-#include "rest_server/restServer.h"
+#include "restServer/restServer.h"
 #include "watchDogHandler.h"
 
 
