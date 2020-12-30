@@ -9,7 +9,7 @@
 #include <net/user/userBasis.h>
 
 
-#include <packetLobby.h>
+#include <net/packets/packetJson.h>
 #include <packetParserJson.h>
 #include <user/lobbyUser.h>
 
@@ -53,7 +53,7 @@ namespace mlnserver {
 	public:
 		void initHandler(mln::MessageProcedure* msgProc)
 		{
-			msgProc->registMessage(packetLobby::PT_JSON::packet_value, &SampleConnector::readJsonPacket);
+			msgProc->registMessage(packetJson::PT_JSON::packet_value, &SampleConnector::readJsonPacket);
 
 			// lobby
 			m_URLs["/lobby/login"] = SampleConnector::login;
@@ -61,16 +61,16 @@ namespace mlnserver {
 
 		static bool readJsonPacket(mln::Connection::sptr conn, unsigned int size, mln::CircularStream& msg)
 		{
-			if (packetLobby::PT_JSON::HEADER_SIZE > size) {
+			if (packetJson::PT_JSON::HEADER_SIZE > size) {
 				LOGE("invalid packet.");
 				conn->closeReserve(0);
 				return false;
 			}
 
-			packetLobby::PT_JSON req;
-			msg.read((char*)&req, packetLobby::PT_JSON::HEADER_SIZE);
+			packetJson::PT_JSON req;
+			msg.read((char*)&req, packetJson::PT_JSON::HEADER_SIZE);
 
-			if (packetLobby::PT_JSON::MAX_BODY_SIZE < req.bodySize
+			if (packetJson::PT_JSON::MAX_BODY_SIZE < req.bodySize
 				|| 0 >= req.bodySize) {
 				LOGE("body size error. sessoinId:{}, size:{}", conn->getIdentity(), req.bodySize);
 				return false;

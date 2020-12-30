@@ -56,7 +56,6 @@ if(Boost_FOUND)
         lobbyAcceptorReceiver.cpp
         main.cpp
         packetJsonHandler.cpp
-        packetParserJson.cpp
         restServer/restServer.cpp
         restServer/restHandler.cpp
         user/lobbyUser.cpp

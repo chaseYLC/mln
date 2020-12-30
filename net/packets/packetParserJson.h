@@ -6,25 +6,25 @@
 #include <mutex>
 #include <tuple>
 
-#include <packetLobby.h>
+#include "packetJson.h"
 
-namespace mlnserver {
+namespace mln {
 
 	class PacketJsonParserManip
 	{
 	public:
 		static size_t getHeaderSize()
 		{
-			return sizeof(packetLobby::HEADER);
+			return sizeof(packetJson::HEADER);
 		}
 
 		static void facilitate(size_t currentSize, char* buffer)
 		{
-			packetLobby::HEADER* header = reinterpret_cast<packetLobby::HEADER*>(buffer);
+			packetJson::HEADER* header = reinterpret_cast<packetJson::HEADER*>(buffer);
 			header->size = currentSize;
-			header->code = packetLobby::PT_JSON::packet_value;
+			header->code = packetJson::PT_JSON::packet_value;
 
-			/*packetLobby::PT_JSON *packet = reinterpret_cast<packetLobby::PT_JSON*>(buffer);
+			/*packetJson::PT_JSON *packet = reinterpret_cast<packetJson::PT_JSON*>(buffer);
 			int c = packet->header.size;*/
 		}
 	};
@@ -39,4 +39,4 @@ namespace mlnserver {
 			, mln::MessageProcedure::msgMapTy& memberFuncMap
 			, mln::MessageProcedure::msgMapTy& staticFuncMap);
 	};
-}//namespace mlnserver {
+}//namespace mln {

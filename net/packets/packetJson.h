@@ -14,7 +14,7 @@
 
 #pragma pack(1)   
 
-namespace packetLobby
+namespace packetJson
 {
 	using TyPacketCode = uint32_t;
 
@@ -62,7 +62,7 @@ namespace packetLobby
 		}
 	};
 
-};// namespace packetLobby
+};// namespace packetJson
 
 
 

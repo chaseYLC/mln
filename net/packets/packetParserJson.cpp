@@ -3,11 +3,10 @@
 
 #include <net/packetEncType.h>
 #include <net/eventReceiver.h>
-#include <packetLobby.h>
-#include "lobbyAcceptorReceiver.h"
+#include "packetJson.h"
 
 
-namespace mlnserver {
+namespace mln {
 
 	static std::once_flag s_jsonParserManipFlag;
 
@@ -32,7 +31,7 @@ namespace mlnserver {
 		, [[maybe_unused]] mln::MessageProcedure::msgMapTy& memberFuncMap
 		, mln::MessageProcedure::msgMapTy& staticFuncMap)
 	{
-		packetLobby::HEADER header;
+		packetJson::HEADER header;
 
 		do {
 			if (false == msg->readable((char*)&header, sizeof(header))) {
@@ -64,4 +63,4 @@ namespace mlnserver {
 
 		return true;
 	}
-}//namespace mlnserver {
+}//namespace mln {

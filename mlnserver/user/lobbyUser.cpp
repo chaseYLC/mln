@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "lobbyUser.h"
 
-#include <packetLobby.h>
+#include <net/packets/packetJson.h>
 
 using namespace mlnserver;
 
@@ -38,7 +38,7 @@ int User::sendJsonPacket(const std::string& url, Json::Value& jv)
 
 	LOGD("send Json (url:{}) : {}", url, serialized);
 
-	packetLobby::PT_JSON pk;
+	packetJson::PT_JSON pk;
 
 	// set URL..
 	memcpy(pk.url, url.c_str(), url.length());
@@ -53,5 +53,5 @@ int User::sendJsonPacket(const std::string& url, Json::Value& jv)
 	pk.isCompressed = 0;
 
 	// send ~!
-	return this->Send((char*)&pk, packetLobby::PT_JSON::HEADER_SIZE + pk.bodySize, false);
+	return this->Send((char*)&pk, packetJson::PT_JSON::HEADER_SIZE + pk.bodySize, false);
 }
