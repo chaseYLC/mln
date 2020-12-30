@@ -22,6 +22,7 @@ if(WIN32)
     message("Platfrom Windows")
 elseif(UNIX)
     message("Platform Unix")
+    set(CMAKE_CXX_FLAGS "-fpermissive")# for "net/config/config.h" template paramter
 endif()
 
 add_subdirectory("net")
