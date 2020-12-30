@@ -57,3 +57,12 @@ typedef struct tagTSV_ID {
 #define MEMO(desc) message(__FILE__ "(" chSTR(__LINE__) "):" #desc)
 #endif
 
+
+#define GET_USER(conn, spUserBase, user)	\
+	std::shared_ptr<mln::UserBasis> spUserBase = conn->getUser();\
+	if (!spUserBase) {\
+		LOGE("none user. sessionId:{}", conn->getIdentity());\
+		return;\
+	}\
+	std::shared_ptr<mlnserver::User> user = std::static_pointer_cast<mlnserver::User>(spUserBase)
+

@@ -28,7 +28,7 @@ namespace packetLobby
 		enum { packet_value = 1 };
 
 		enum {
-			MAX_BODY_SIZE = 30000,
+			MAX_BODY_SIZE = 8192,
 			MAX_URL_STRING = 32,
 			HEADER_SIZE = 47,
 		};

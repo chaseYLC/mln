@@ -7,18 +7,6 @@
 
 using namespace mlnserver;
 
-#define GET_USER_LOBBY(user)	mlnserver::User *user = (mlnserver::User *)conn->getUser();	if (nullptr == user){	LOGE("user is null. ident: {}", conn->getIdentity());	return;}
-#define GET_USER_LOBBY_BY_CONN(user, conn)	mlnserver::User *user = (mlnserver::User *)conn->getUser();	if (nullptr == user){	LOGE("user is null. ident: {}", conn->getIdentity());	return;}
-
-#define GET_USER(conn, spUserBase, user)	\
-	std::shared_ptr<mln::UserBasis> spUserBase = conn->getUser();\
-	if (!spUserBase) {\
-		LOGE("none user. sessionId:{}", conn->getIdentity());\
-		return;\
-	}\
-	std::shared_ptr<mlnserver::SampleUser> user = std::static_pointer_cast<mlnserver::SampleUser>(spUserBase)
-
-
 
 void JsonPacketHandler::initHandlers(mln::MessageProcedure * msgProc)
 {
@@ -110,4 +98,11 @@ void JsonPacketHandler::dispatch(mln::Connection::sptr conn, const std::string& 
 void JsonPacketHandler::login(mln::Connection::sptr conn, const std::string& url, Json::Value& jv)
 {
 	GET_USER(conn, spUserBase, user);
+
+	auto myId = std::move(jv["myId"].asString());
+	LOGD("received myId:{}", myId);
+
+	Json::Value rsp;
+	rsp[RSP_RM] = RSP_OK;
+	user->sendJsonPacket(url, rsp);
 }

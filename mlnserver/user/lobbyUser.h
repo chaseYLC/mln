@@ -23,6 +23,8 @@ namespace mlnserver {
 		std::string GetForceClosingInfo();
 		std::string GetUserID() const override;
 
+		int sendJsonPacket(const std::string& url, Json::Value& jv);
+
 	public:
 		TyUserIDX m_userIDX = 0;
 		std::weak_ptr<Room> m_wpRoom;
