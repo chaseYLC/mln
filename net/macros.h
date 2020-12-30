@@ -11,10 +11,6 @@
 #define DY_VALUE_TYPE(templateVariable)	std::decay<decltype(templateVariable)>::type::value_type
 
 
-
-
-
-
 namespace mln{
 	template<typename T>
 	void safe_delete(T*& a) {
@@ -40,6 +36,3 @@ public:
 	static Is_pointer check_type(const T*, const T* const*);
 	static Is_array check_type(const void*, const void*);
 };
-
-
-

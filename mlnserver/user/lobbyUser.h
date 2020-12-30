@@ -30,3 +30,14 @@ namespace mlnserver {
 		std::weak_ptr<Room> m_wpRoom;
 	};
 };// namespace mlnserver {
+
+
+#define GET_USER(conn, spUserBase, user)	\
+	std::shared_ptr<mln::UserBasis> spUserBase = conn->getUser();\
+	if (!spUserBase) {\
+		LOGE("none user. sessionId:{}", conn->getIdentity());\
+		return;\
+	}\
+	std::shared_ptr<mlnserver::User> user = std::static_pointer_cast<mlnserver::User>(spUserBase)
+
+

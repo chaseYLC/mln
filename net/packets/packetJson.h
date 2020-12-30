@@ -64,8 +64,13 @@ namespace packetJson
 
 };// namespace packetJson
 
-
-
-
 #pragma pack()
 #pragma warning ( pop )
+
+
+
+#define RSP_SEQ	"packetSequenceNum"
+#define RSP_RC	"resultCode"
+#define RSP_RM	"resultMsg"
+#define RSP_OK	"OK"
+#define RSP_RC_SYSTEM_ERROR		99
