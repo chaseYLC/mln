@@ -51,7 +51,7 @@ if(Boost_FOUND)
 
     add_executable(mlnserver
         stdafx.cpp
-        configuration.cpp
+        
         globalObjects.cpp
         HttpRequestManager.cpp
         keyEventHandler.cpp

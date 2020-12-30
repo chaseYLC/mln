@@ -35,7 +35,7 @@ void post_asio_start()
 	TestFrameworks::Play();
 
 	TRestServer::instance()->Start(
-		ConfGetIntD(ConfigTags::RESTSVC_BIND_PORT, 28888)
+		CONF->GetValueInt(ConfigTags::RESTSVC_BIND_PORT, 28888)
 	);
 }
 
@@ -43,7 +43,7 @@ void initTestInterface()
 {
 	watchDogHandler::instance()->registCallback(
 		shared_ios
-		, ConfGetIntD(ConfigTags::TELNET_TEST_CONSOLE_PORT, 30000));
+		, CONF->GetValueInt(ConfigTags::TELNET_TEST_CONSOLE_PORT, 30000));
 
 	keyEventHandler::instance()->registCallback(shared_ios);
 
@@ -62,10 +62,10 @@ bool ioServiceThread()
 		, *shared_ios.get()
 		, PacketJsonParser::packetParser
 		, PacketJsonParser::getMsgManipulator()
-		, ConfGetIntD(ConfigTags::UPDATE_TIME_MS, 1000)
-		, ConfGetIntD(ConfigTags::KEEP_ALIVE, 0) * 1000
-		, ConfGetIntD(ConfigTags::SERVER_PORT, 28101)
-		, ConfGetIntD(ConfigTags::NET_IO_WORKER_CNT, boost::thread::hardware_concurrency() * 2)
+		, CONF->GetValueInt(ConfigTags::UPDATE_TIME_MS, 1000)
+		, CONF->GetValueInt(ConfigTags::KEEP_ALIVE, 0) * 1000
+		, CONF->GetValueInt(ConfigTags::SERVER_PORT, 28101)
+		, CONF->GetValueInt(ConfigTags::NET_IO_WORKER_CNT, boost::thread::hardware_concurrency() * 2)
 	);
 
 	if (!lobbyAcceptor) {
@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
 {
 	mln::time::initRandom();
 
-	if (false == Configuration::instance()->LoadScript("netconfig.json")) {
+	if (false == CONF->LoadScript("netconfig.json")) {
 		fmt::print("Failed LoadScript()");
 		return 0;
 	}
@@ -92,16 +92,16 @@ int main(int argc, char* argv[])
 	mln::LogManager::instance()->Create()
 		.global()
 			.loggerName("mlnserver_log")
-			.flushEverySec(ConfGetIntD(ConfigTags::LOG_FLUSH_SEC, 0))
+			.flushEverySec(CONF->GetValueInt(ConfigTags::LOG_FLUSH_SEC, 0))
 		.console()
 			.lv(spdlog::level::trace)
 			.pattern(nullptr)
 		.file()
 			.lv(spdlog::level::trace)
 			.pattern(nullptr)
-			.fileNameBase(ConfGetString(ConfigTags::SERVER_NAME))
-			.maxFileSize(1048576 * ConfGetIntD(ConfigTags::LOG_FILE_SIZE_MB, 100))
-			.maxFiles(ConfGetIntD(ConfigTags::LOG_FILE_KEEP_MAX_CNT, 30))
+			.fileNameBase(CONF->GetValueString(ConfigTags::SERVER_NAME))
+			.maxFileSize(1048576 * CONF->GetValueInt(ConfigTags::LOG_FILE_SIZE_MB, 100))
+			.maxFiles(CONF->GetValueInt(ConfigTags::LOG_FILE_KEEP_MAX_CNT, 30))
 		.done();
 
 
@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
 #ifdef _WIN32
     mln::ExceptionHandler::Init(nullptr, nullptr, true);
 
-	if (FALSE == SetConsoleTitleA(ConfGetString(ConfigTags::SERVER_NAME).c_str())) {
+	if (FALSE == SetConsoleTitleA(CONF->GetValueString(ConfigTags::SERVER_NAME).c_str())) {
 		_tprintf(TEXT("SetConsoleTitle failed (%d)\n"), GetLastError());
 	}
 

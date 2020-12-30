@@ -308,7 +308,7 @@ std::string HttpRequestManager::RequestJson(const std::string& method, const std
 			"x-os-info: ubuntu",
 			"x-lang-info: ko"
 			}
-			, ConfGetIntD(ConfigTags::HTTP_REQUEST_TIMEOUT, 5)
+			, CONF->GetValueInt(ConfigTags::HTTP_REQUEST_TIMEOUT, 5)
 		);
 
 		std::string responseString = std::string(response.body.begin(), response.body.end());
