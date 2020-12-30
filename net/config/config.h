@@ -56,7 +56,7 @@ namespace mln {
 					std::string stringValue;
 
 					for (auto field : fields) {
-						auto& fieldValue = m_fileds[ConfigTags_fromString(field.key.data())];
+						auto& fieldValue = m_fileds[ConfigTags_fromString((std::string)(field.key.data()))];
 
 						auto prt = [&](auto v) {
 							fmt::print("key : {:35} / value : {}\n", field.key.data(), v);
