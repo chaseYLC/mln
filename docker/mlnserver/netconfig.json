@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "sections": [
+    {
+      "name": "ACCEPTOR",
+      "fields": {
+        "SN": 1,
+        "SERVER_NAME": "mln-server",
+        "SERVER_IP": "127.0.0.1",
+        "SERVER_PORT": 28282,
+        "UPDATE_TIME_MS": 1000,
+        "KEEP_ALIVE": 60,
+        "UPDATE_TIME_FOR_ROOM_MS": 50,
+        "RESTSVC_BIND_PORT": 28888,
+        "NET_IO_WORKER_CNT": 20
+      }
+    },
+    {
+      "name": "LOG",
+      "fields": {
+        "LOG_FILE_SIZE_MB": 100,
+        "LOG_FILE_KEEP_MAX_CNT": 30,
+        "LOG_FLUSH_SEC": 0
+      }
+    },
+    {
+      "name": "DEV_SETTING",
+      "fields": {
+        "LOCAL_DEV": 0,
+        "TELNET_TEST_CONSOLE_PORT": 30000
+      }
+    }
+  ]
+}
