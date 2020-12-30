@@ -5,22 +5,14 @@
       "name": "ACCEPTOR",
       "fields": {
         "SN": 1,
-        "SERVER_NAME": "TMaster1",
+        "SERVER_NAME": "mln-server",
         "SERVER_IP": "127.0.0.1",
-        "SERVER_PORT": 28101,
+        "SERVER_PORT": 28282,
         "UPDATE_TIME_MS": 1000,
         "KEEP_ALIVE": 60,
-        "ABSENT_TIME_MAX": 300,
         "UPDATE_TIME_FOR_ROOM_MS": 50,
         "RESTSVC_BIND_PORT": 28888,
         "NET_IO_WORKER_CNT": 20
-      }
-    },
-    {
-      "name": "LEGACY",
-      "fields": {
-        "SERVER_PORT_LEGACY": 28102,
-        "TS_INTERVAL_LEGACY": 5
       }
     },
     {
@@ -29,32 +21,6 @@
         "LOG_FILE_SIZE_MB": 100,
         "LOG_FILE_KEEP_MAX_CNT": 30,
         "LOG_FLUSH_SEC": 0
-      }
-    },
-    {
-      "name": "WAS",
-      "fields": {
-        "WAS_DB_AGENT_IP": "52.231.26.186",
-        "_WAS_DB_AGENT_IP": "52.231.66.182",
-        "WAS_DB_AGENT_PORT": "8080",
-        "UPDATE_TIME_FOR_MONITOR_MS": 0,
-        "STATUS_REPORT_URL": "http://52.231.26.186:8080/was/update_tmaster_status/"
-      }
-    },
-    {
-      "name": "DB",
-      "fields": {
-        "DB_SERVER_IP": "52.79.237.82",
-        "DB_SERVER_PORT": 21002,
-        "DB_USER_ID": "secretdev",
-        "DB_USER_PWD": "TlzmfltXKDNSDEV@0!(",
-        "DB_NAME": "social_vr"
-      }
-    },
-    {
-      "name": "OBSERVER",
-      "fields": {
-        "MAX_OBSERVER_IN_ROOM": 4
       }
     },
     {
