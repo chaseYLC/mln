@@ -17,6 +17,19 @@ namespace mln
 			boost::split(out, src, boost::is_any_of(delim));
 			return out;
 		}
+
+		static void trim(std::string& src)
+		{
+			boost::algorithm::trim(src);
+		}
+		static void trim_left(std::string& src)
+		{
+			boost::algorithm::trim_left(src);
+		}
+		static void trim_right(std::string& src)
+		{
+			boost::algorithm::trim_right(src);
+		}
 	};
 
 }
