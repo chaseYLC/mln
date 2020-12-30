@@ -13,7 +13,6 @@
 #include "lobbyAcceptorReceiver.h"
 #include "packetParserJson.h"
 #include "rest_server/restServer.h"
-#include "testSample.h"
 #include "watchDogHandler.h"
 
 
@@ -32,8 +31,6 @@ void post_asio_start()
 {
 	LOGI("asio-service started");
 	
-	TestFrameworks::Play();
-
 	RestServer::instance()->Start(
 		CONF->GetValueInt(ConfigTags::RESTSVC_BIND_PORT, 28888)
 	);
