@@ -4,6 +4,7 @@
 #include <fmt/core.h>
 #include <net/logManager.h>
 #include <net/netServiceAcceptor.h>
+#include <net/packets/packetParserJson.h>
 #include <net/testInterface.h>
 #include <net/time/time.h>
 #include <user/lobbyUser.h>
@@ -11,7 +12,7 @@
 #include "configuration.h"
 #include "keyEventHandler.h"
 #include "lobbyAcceptorReceiver.h"
-#include "packetParserJson.h"
+
 #include "restServer/restServer.h"
 #include "watchDogHandler.h"
 
@@ -64,8 +65,8 @@ bool ioServiceThread()
 	auto lobbyAcceptor = mln::registAcceptor(
 		receiver
 		, *shared_ioc.get()
-		, PacketJsonParser::packetParser
-		, PacketJsonParser::getMsgManipulator()
+		, mln::PacketJsonParser::packetParser
+		, mln::PacketJsonParser::getMsgManipulator()
 		, CONF->GetValueInt(ConfigTags::UPDATE_TIME_MS, 1000)
 		, CONF->GetValueInt(ConfigTags::KEEP_ALIVE, 0) * 1000
 		, CONF->GetValueInt(ConfigTags::SERVER_PORT, 28282)

@@ -50,6 +50,7 @@ add_library(mln STATIC
     stdafx.cpp
     connectionImpl.cpp
     packets/packetParserJson.cpp
+    packets/packetJsonHandlerBase.cpp
     exceptionHandler.cpp
     jsoncpp.cpp
     logManager.cpp

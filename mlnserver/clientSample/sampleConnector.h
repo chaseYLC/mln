@@ -10,7 +10,7 @@
 
 
 #include <net/packets/packetJson.h>
-#include <packetParserJson.h>
+#include <net/packets/packetParserJson.h>
 #include <user/lobbyUser.h>
 
 namespace mlnserver {
@@ -155,8 +155,8 @@ namespace mlnserver {
 			mln::NetService::ServiceParams
 				serviceInitParamsForClnt(ioc
 					, connectorHandler
-					, mlnserver::PacketJsonParser::packetParser
-					, mlnserver::PacketJsonParser::getMsgManipulator()
+					, mln::PacketJsonParser::packetParser
+					, mln::PacketJsonParser::getMsgManipulator()
 					, 1000
 					, 0
 				);
