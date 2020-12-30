@@ -42,13 +42,13 @@ void post_asio_start()
 void initTestInterface()
 {
 	watchDogHandler::instance()->registCallback(
-		shared_ios
+		shared_ioc
 		, CONF->GetValueInt(ConfigTags::TELNET_TEST_CONSOLE_PORT, 30000));
 
-	keyEventHandler::instance()->registCallback(shared_ios);
+	keyEventHandler::instance()->registCallback(shared_ioc);
 
 	mln::TestIntarface::instance()->start(
-		shared_ios.get()		// use nullptr if not using boost-asio
+		shared_ioc.get()		// use nullptr if not using boost-asio
 		//, mln::TestIntarface::FUNC::wait_keyboardEvent
 		, mln::TestIntarface::FUNC::watchdog
 		);
@@ -59,7 +59,7 @@ bool ioServiceThread()
 	static LobbyAcceptorReceiver receiver;
 	auto lobbyAcceptor = mln::registAcceptor(
 		receiver
-		, *shared_ios.get()
+		, *shared_ioc.get()
 		, PacketJsonParser::packetParser
 		, PacketJsonParser::getMsgManipulator()
 		, CONF->GetValueInt(ConfigTags::UPDATE_TIME_MS, 1000)

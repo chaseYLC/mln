@@ -25,7 +25,6 @@
 
 // for contents...
 #include "restHandler.h"
-#include <user/lobbyUserManager.h>
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
@@ -302,7 +301,7 @@ void TRestServer::Accept(const int port)
         auto const address = net::ip::make_address("0.0.0.0");
         auto const doc_root = std::make_shared<std::string>("");
 
-        auto& ioc = *GlobalObjects::instance()->shared_ios().get();
+        auto& ioc = *GlobalObjects::instance()->shared_ioc().get();
 
         tcp::acceptor acceptor{ ioc, {address, (uint16_t)port} };
 

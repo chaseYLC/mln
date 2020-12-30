@@ -17,7 +17,7 @@ GlobalObjects::GlobalObjects()
 	UpdateTimePoint();
 }
 
-GlobalObjects::SHARED_IOS& GlobalObjects::shared_ios()
+GlobalObjects::SHARED_IOC& GlobalObjects::shared_ioc()
 {
 	return m_shared_ios;
 }

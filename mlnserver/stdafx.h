@@ -33,7 +33,7 @@
 
 
 
-inline std::shared_ptr< boost::asio::io_context > shared_ios
+inline std::shared_ptr< boost::asio::io_context > shared_ioc
  = std::make_shared<boost::asio::io_context>();
 
 typedef struct tagTSV_ID {

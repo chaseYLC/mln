@@ -20,7 +20,7 @@ public:
 	static void TestUser()
 	{
 		// create connection
-		auto conn = mln::Connection::createDummyConnection(*shared_ios.get());
+		auto conn = mln::Connection::createDummyConnection(*shared_ioc.get());
 		auto currentId = conn->getIdentity();
 
 		// add user
@@ -66,7 +66,7 @@ public:
 
 	static void TestScheduler()
 	{
-		static mln::Scheduler<5> scheduler(*shared_ios.get());
+		static mln::Scheduler<5> scheduler(*shared_ioc.get());
 		scheduler.AddJobInterval(1000
 			, [](uint64_t d) {
 				LOGD("Scheduler job1. dur:1000");
@@ -83,7 +83,7 @@ public:
 	static void TestSimpleScheduler()
 	{
 		{
-			static mln::SimpleScheduler<5, 1000, false> scheduler(*shared_ios.get());
+			static mln::SimpleScheduler<5, 1000, false> scheduler(*shared_ioc.get());
 
 			scheduler.Init();
 			scheduler.AddJobInterval(1
@@ -95,8 +95,8 @@ public:
 		}
 
 		{
-			static mln::SimpleScheduler<5, 1000, true> scheduler2(*shared_ios.get());
-			static auto spSt = std::make_shared<boost::asio::io_context::strand>(*shared_ios.get());
+			static mln::SimpleScheduler<5, 1000, true> scheduler2(*shared_ioc.get());
+			static auto spSt = std::make_shared<boost::asio::io_context::strand>(*shared_ioc.get());
 
 			scheduler2.Init(spSt);
 			scheduler2.AddJobInterval(3
@@ -111,7 +111,7 @@ public:
 	static void TestAsyncTask()
 	{
 		// create connection
-		auto conn = mln::Connection::createDummyConnection(*shared_ios.get());
+		auto conn = mln::Connection::createDummyConnection(*shared_ioc.get());
 		auto currentId = conn->getIdentity();
 
 		// add user

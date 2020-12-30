@@ -18,13 +18,13 @@ namespace mlnserver {
 		: public mln::SingletonLight< GlobalObjects >
 	{
 	public:
-		using SHARED_IOS = std::shared_ptr< boost::asio::io_context  >;
+		using SHARED_IOC = std::shared_ptr< boost::asio::io_context  >;
 		using TIME_POINT = std::chrono::time_point<std::chrono::system_clock>;
 
 		GlobalObjects();
 
 	public:
-		SHARED_IOS& shared_ios();
+		SHARED_IOC& shared_ioc();
 
 		const TIME_POINT timePointNow() const {
 			return *m_pSystemClockNow;
@@ -37,7 +37,7 @@ namespace mlnserver {
 
 
 	private:
-		SHARED_IOS m_shared_ios;
+		SHARED_IOC m_shared_ios;
 
 		std::unique_ptr<TIME_POINT> m_pSystemClockNow;
 		std::unique_ptr<mln::Spinlock> m_lockSystemClockNow;
