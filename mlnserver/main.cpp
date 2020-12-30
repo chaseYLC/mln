@@ -106,9 +106,8 @@ int main(int argc, char* argv[])
     mln::ExceptionHandler::Init(nullptr, nullptr, true);
 
 	if (FALSE == SetConsoleTitleA(CONF->GetValueString(ConfigTags::SERVER_NAME).c_str())) {
-		_tprintf(TEXT("SetConsoleTitle failed (%d)\n"), GetLastError());
+		fmt::print("SetConsoleTitle failed : {}", GetLastError());
 	}
-
 #endif
 
 	initTestInterface();
