@@ -102,14 +102,6 @@ int main(int argc, char* argv[])
 		.done();
 
 
-#ifdef USE_DBMS_CONNECTOR_DUMMY
-	if (false == DbmsDummy::instance()->LoadScript(
-		ConfGetStringD(ConfigTags::DBMS_DUMMY_SCRIPT_NAME, "dbmsdummy_chase.json"))) {
-		std::cout << "Failed DBMS-Dummy LoadScript()" << std::endl;
-		return 0;
-	}
-#endif
-
 #ifdef _WIN32
     mln::ExceptionHandler::Init(nullptr, nullptr, true);
 
