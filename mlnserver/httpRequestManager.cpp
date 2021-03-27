@@ -4,9 +4,6 @@
 #include <iostream>
 #include <boost/asio.hpp>
 #include <boost/property_tree/json_parser.hpp>
-#if defined(__GNUC__)
-#include <curl/curl.h>
-#endif
 
 #include <net/http/httpRequest.h>
 #include <net/logManager.h>
